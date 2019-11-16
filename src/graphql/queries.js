@@ -6,12 +6,9 @@ export const getGoal = `query GetGoal($id: ID!) {
     id
     name
     tasks {
-      items {
-        id
-        title
-        value
-      }
-      nextToken
+      id
+      title
+      value
     }
     objective
   }
@@ -27,7 +24,9 @@ export const listGoals = `query ListGoals(
       id
       name
       tasks {
-        nextToken
+        id
+        title
+        value
       }
       objective
     }
@@ -39,14 +38,6 @@ export const getTask = `query GetTask($id: ID!) {
   getTask(id: $id) {
     id
     title
-    goal {
-      id
-      name
-      tasks {
-        nextToken
-      }
-      objective
-    }
     value
   }
 }
@@ -60,11 +51,6 @@ export const listTasks = `query ListTasks(
     items {
       id
       title
-      goal {
-        id
-        name
-        objective
-      }
       value
     }
     nextToken

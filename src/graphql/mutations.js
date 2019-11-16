@@ -6,12 +6,9 @@ export const createGoal = `mutation CreateGoal($input: CreateGoalInput!) {
     id
     name
     tasks {
-      items {
-        id
-        title
-        value
-      }
-      nextToken
+      id
+      title
+      value
     }
     objective
   }
@@ -22,12 +19,9 @@ export const updateGoal = `mutation UpdateGoal($input: UpdateGoalInput!) {
     id
     name
     tasks {
-      items {
-        id
-        title
-        value
-      }
-      nextToken
+      id
+      title
+      value
     }
     objective
   }
@@ -38,12 +32,9 @@ export const deleteGoal = `mutation DeleteGoal($input: DeleteGoalInput!) {
     id
     name
     tasks {
-      items {
-        id
-        title
-        value
-      }
-      nextToken
+      id
+      title
+      value
     }
     objective
   }
@@ -53,14 +44,6 @@ export const createTask = `mutation CreateTask($input: CreateTaskInput!) {
   createTask(input: $input) {
     id
     title
-    goal {
-      id
-      name
-      tasks {
-        nextToken
-      }
-      objective
-    }
     value
   }
 }
@@ -69,14 +52,6 @@ export const updateTask = `mutation UpdateTask($input: UpdateTaskInput!) {
   updateTask(input: $input) {
     id
     title
-    goal {
-      id
-      name
-      tasks {
-        nextToken
-      }
-      objective
-    }
     value
   }
 }
@@ -85,14 +60,6 @@ export const deleteTask = `mutation DeleteTask($input: DeleteTaskInput!) {
   deleteTask(input: $input) {
     id
     title
-    goal {
-      id
-      name
-      tasks {
-        nextToken
-      }
-      objective
-    }
     value
   }
 }
