@@ -1,0 +1,33 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-ididit-dev-221250-authRole",
+            "UnauthRoleArn": "arn:aws:iam::307239411342:role/amplify-ididit-dev-221250-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::307239411342:role/amplify-ididit-dev-221250-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-ididit-dev-221250-deployment",
+            "UnauthRoleName": "amplify-ididit-dev-221250-unauthRole",
+            "StackName": "amplify-ididit-dev-221250",
+            "StackId": "arn:aws:cloudformation:us-east-1:307239411342:stack/amplify-ididit-dev-221250/5b187e20-0827-11ea-ba32-0e91a2a31d14"
+        },
+        "categories": {
+            "function": {
+                "ididitaac66428DefineAuthChallenge": {},
+                "ididitaac66428CreateAuthChallenge": {},
+                "ididitaac66428VerifyAuthChallengeResponse": {
+                    "RECAPTCHASECRET": ""
+                },
+                "ididitaac66428CustomMessage": {
+                    "REDIRECTURL": "",
+                    "EMAILSUBJECT": "Verify Your Email",
+                    "EMAILMESSAGE": "Please click the link below to verify your email address."
+                }
+            },
+            "auth": {
+                "ididitaac66428": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"a\",\"client_secret\":\"a\"},{\"ProviderName\":\"Google\",\"client_id\":\"a\",\"client_secret\":\"a\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"a\",\"client_secret\":\"a\"}]"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "trigger": true,
+    "modules": [
+        "captcha-verify"
+    ],
+    "parentResource": "ididitaac66428",
+    "functionName": "ididitaac66428VerifyAuthChallengeResponse",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerDir": "/Users/brentclark/.nvm/versions/node/v12.3.1/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/VerifyAuthChallengeResponse",
+    "roleName": "ididitaac66428VerifyAuthChallengeResponse",
+    "triggerTemplate": "VerifyAuthChallengeResponse.json.ejs",
+    "triggerEventPath": "VerifyAuthChallengeResponse.event.json",
+    "skipEdit": true,
+    "resourceName": "ididitaac66428VerifyAuthChallengeResponse"
+}

@@ -1,0 +1,16 @@
+{
+    "trigger": true,
+    "modules": [
+        "verification-link"
+    ],
+    "parentResource": "ididitaac66428",
+    "functionName": "ididitaac66428CustomMessage",
+    "parentStack": "auth",
+    "triggerEnvs": "[{\"key\":\"RESOURCENAME\",\"value\":\"resourceName\"}]",
+    "triggerDir": "/Users/brentclark/.nvm/versions/node/v12.3.1/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/CustomMessage",
+    "roleName": "ididitaac66428CustomMessage",
+    "triggerTemplate": "CustomMessage.json.ejs",
+    "triggerEventPath": "CustomMessage.event.json",
+    "skipEdit": true,
+    "resourceName": "ididitaac66428CustomMessage"
+}

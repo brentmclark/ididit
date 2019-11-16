@@ -1,0 +1,16 @@
+{
+    "trigger": true,
+    "modules": [
+        "captcha-create-challenge"
+    ],
+    "parentResource": "ididitaac66428",
+    "functionName": "ididitaac66428CreateAuthChallenge",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerDir": "/Users/brentclark/.nvm/versions/node/v12.3.1/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/CreateAuthChallenge",
+    "roleName": "ididitaac66428CreateAuthChallenge",
+    "triggerTemplate": "CreateAuthChallenge.json.ejs",
+    "triggerEventPath": "CreateAuthChallenge.event.json",
+    "skipEdit": true,
+    "resourceName": "ididitaac66428CreateAuthChallenge"
+}

@@ -1,0 +1,13 @@
+type Goal @model {
+  id: ID!
+  name: String!
+  tasks: [Task] @connection(name: "GoalTasks")
+  objective: Int!
+}
+
+type Task @model {
+  id: ID!
+  title: String!
+  goal: Goal @connection(name: "GoalTasks")
+  value: Int!
+}

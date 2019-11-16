@@ -1,0 +1,92 @@
+{
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"function": {
+		"ididitaac66428DefineAuthChallenge": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"ididitaac66428CreateAuthChallenge": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"ididitaac66428VerifyAuthChallengeResponse": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"ididitaac66428CustomMessage": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
+	"auth": {
+		"ididitaac66428": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "ididitaac66428DefineAuthChallenge",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "ididitaac66428CreateAuthChallenge",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "ididitaac66428VerifyAuthChallengeResponse",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "ididitaac66428CustomMessage",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				}
+			]
+		}
+	},
+	"api": {
+		"ididit": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "",
+							"apiKeyExpirationDays": 7
+						}
+					}
+				}
+			}
+		}
+	}
+}

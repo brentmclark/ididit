@@ -1,0 +1,105 @@
+{
+    "identityPoolName": "ididitaac66428_identitypool_aac66428",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "ididitaac66428",
+    "userPoolName": "ididitaac66428_userpool_aac66428",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "userpoolClientLambdaRole": "ididitaac66428_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "ididitaac66428",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "defaultSocial",
+    "usernameAttributes": [
+        "email"
+    ],
+    "triggers": "{\"DefineAuthChallenge\":[\"captcha-define-challenge\"],\"CreateAuthChallenge\":[\"captcha-create-challenge\"],\"VerifyAuthChallengeResponse\":[\"captcha-verify\"],\"CustomMessage\":[\"verification-link\"]}",
+    "userPoolGroupList": [],
+    "verificationBucketName": "ididitaac66428verificationbucket",
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ididitaac66428DefineAuthChallenge",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "ididitaac66428CreateAuthChallenge",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "ididitaac66428VerifyAuthChallengeResponse",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "ididitaac66428CustomMessage",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
+    "hostedUI": true,
+    "hostedUIDomainName": "ididita2a76d95-a2a76d95",
+    "authProvidersUserPool": [
+        "Facebook",
+        "Google",
+        "LoginWithAmazon"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}},{\"ProviderName\":\"LoginWithAmazon\",\"authorize_scopes\":\"profile profile:user_id\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"user_id\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:3000/signin/\"],\"LogoutURLs\":[\"https://localhost:3000/signout/\"]}"
+}
