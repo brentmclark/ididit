@@ -29,12 +29,13 @@ function AddTaskView(props) {
 
     return (
         <form onSubmit={handleSubmit}>
+            <h3>Add Task</h3>
             <div>
-                <label htmlFor="taskName">Task Name</label>
+                <label htmlFor="taskName">Name</label>
                 <input type="text" name="taskName" id="taskName" />
             </div>
             <div>
-                <label htmlFor="taskValue">Task Value</label>
+                <label htmlFor="taskValue">Points</label>
                 <input type="text" name="taskValue" id="taskValue" />
             </div>
             <button type="submit">Add Task</button>
