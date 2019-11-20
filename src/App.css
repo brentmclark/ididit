@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+a {
+  color: #09d3ac;
+}
+
+nav ul {
+  display: inline-flex;
+}
+
+nav ul li {
+  list-style-type: none;
+  margin: 8px 16px;
+}

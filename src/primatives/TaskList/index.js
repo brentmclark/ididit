@@ -8,42 +8,60 @@ import * as mutations from '../../graphql/mutations';
 
 import AddTask from '../AddTask'
 
+function TaskListView(props) {
+    const { tasks } = props
+    const [editableTaskId, setEditableTaskId] = React.useState(null)
+
+    async function deleteTask(taskId) {
+        const decision = window.confirm('Are you sure you want to delete this task?')
+        if (decision) {
+            const deletedTask = await API.graphql(graphqlOperation(mutations.deleteTask, {input: {id: taskId }}))
+            window.location.reload()
+            // TODO: Need to update cache here
+        }
+    }
+
+    // TODO: Hook up edit flow
+    async function editTask(taskId) {
+        const editedTask = await API.graphql(graphqlOperation(mutations.updateTask, {input: {id: taskId }}))
+        // window.location.reload()
+        // TODO: Need to update cache here
+    }
+    
+
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Points</th>
+                    <th colSpan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    tasks.map(task => {
+                        const contentIsEditable = editableTaskId === task.id
+                        return (
+                            <tr key={task.id}>
+                                <td contentEditable={contentIsEditable}>{task.title}</td>
+                                <td contentEditable={contentIsEditable}>{task.value}</td>
+                                <td onClick={() => deleteTask(task.id)}>delete</td>
+                                {
+                                    contentIsEditable 
+                                    ? <td onClick={() => setEditableTaskId(null)}>save</td>
+                                    : <td onClick={() => setEditableTaskId(task.id)}>edit</td>
+                                }
+                            </tr>
+                        )
+                    })
+                }
+            </tbody>
+        </table>
+    )
+}
+
 export default function TaskList(props) {
-    async function handleDelete(taskId) {
-        const deletedTask = await API.graphql(graphqlOperation(mutations.deleteTask, {input: {id: taskId }}))
-        console.log({deletedTask})
-
-        // LLO: Need to update cache here
-    }
-
-    const TaskListView = (props) => {
-        const { tasks } = props
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Points</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        tasks.map(task => {
-                            return (
-                                <tr key={task.id}>
-                                    <td>{task.title}</td>
-                                    <td>{task.value}</td>
-                                    <td onClick={() => handleDelete(task.id)}>X</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
-        )
-    }
-
     return (
         <>
             <Connect
