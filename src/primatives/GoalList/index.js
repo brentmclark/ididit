@@ -8,6 +8,17 @@ import * as mutations from '../../graphql/mutations';
 
 import AddGoal from '../../primatives/AddGoal'
 
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+ } from '@material-ui/core';
+
+ import { DeleteTwoTone, EditTwoTone, SaveTwoTone } from '@material-ui/icons';
+
 
 function GoalListView(props) {
     const { goals } = props
@@ -31,34 +42,33 @@ function GoalListView(props) {
     
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Objective</th>
-                    <th colSpan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    goals.map(goal => {
-                        const contentIsEditable = editableGoalId === goal.id
-                        return (
-                            <tr key={goal.id}>
-                                <td contentEditable={contentIsEditable}>{goal.name}</td>
-                                <td contentEditable={contentIsEditable}>{goal.objective}</td>
-                                <td onClick={() => deleteGoal(goal.id)}>delete</td>
-                                {
-                                    contentIsEditable 
-                                    ? <td onClick={() => setEditableGoalId(null)}>save</td>
-                                    : <td onClick={() => setEditableGoalId(goal.id)}>edit</td>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Objective</TableCell>
+                    <TableCell colSpan="2">Actions</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {goals.map(goal => {
+                    const contentIsEditable = editableGoalId === goal.id
+                    return (
+                        <TableRow key={goal.id}>
+                            <TableCell contentEditable={contentIsEditable}>{goal.name}</TableCell>
+                            <TableCell contentEditable={contentIsEditable} align="right">{goal.objective}</TableCell>
+                            <TableCell>
+                                {contentIsEditable 
+                                    ? <SaveTwoTone onClick={() => setEditableGoalId(null)} />
+                                    : <EditTwoTone onClick={() => setEditableGoalId(goal.id)} />
                                 }
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+                                <DeleteTwoTone onClick={() => deleteGoal(goal.id)} />
+                            </TableCell>
+                        </TableRow>
+                    )
+                })}
+            </TableBody>
+        </Table>
     )
 }
 
