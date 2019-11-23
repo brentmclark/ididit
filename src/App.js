@@ -26,6 +26,7 @@ import './App.css';
 import TasksLayout from './layouts/Tasks'
 import GoalsLayout from './layouts/Goals'
 import HomeLayout from './layouts/Home'
+import CalendarLayout from './layouts/Calendar'
 
 
 Amplify.configure(awsconfig);
@@ -80,6 +81,7 @@ function App() {
           <MenuItem><Link to="/">Home</Link></MenuItem>
           <MenuItem><Link to="/tasks">Tasks</Link></MenuItem>
           <MenuItem><Link to="/goals">Goals</Link></MenuItem>
+          <MenuItem><Link to="/calendar">Calendar</Link></MenuItem>
         </Menu>
         <Typography variant="h6" className={classes.title}>
           I Did It
@@ -90,6 +92,9 @@ function App() {
       <div className="App">
         <header className="App-header">
         <Switch>
+          <Route path="/calendar">
+            <CalendarLayout />
+          </Route>
           <Route path="/tasks">
             <TasksLayout />
           </Route>

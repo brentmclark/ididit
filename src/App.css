@@ -17,3 +17,11 @@
 .App-link {
   color: #09d3ac;
 }
+
+.react-calendar {
+  width: 100% !important;
+}
+
+.react-calendar__tile {
+  padding: 3.75em !important;
+}

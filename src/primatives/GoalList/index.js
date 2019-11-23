@@ -14,8 +14,7 @@ import {
     TableCell,
     TableHead,
     TableRow,
-    Paper,
- } from '@material-ui/core';
+} from '@material-ui/core';
 
  import { DeleteTwoTone, EditTwoTone, SaveTwoTone } from '@material-ui/icons';
 
@@ -47,7 +46,7 @@ function GoalListView(props) {
                 <TableRow>
                     <TableCell>Name</TableCell>
                     <TableCell align="right">Objective</TableCell>
-                    <TableCell colSpan="2">Actions</TableCell>
+                    <TableCell>Actions</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>

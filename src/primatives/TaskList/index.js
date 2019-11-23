@@ -8,9 +8,21 @@ import * as mutations from '../../graphql/mutations';
 
 import AddTask from '../AddTask'
 
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Checkbox,
+} from '@material-ui/core';
+
+ import { DeleteTwoTone, EditTwoTone, SaveTwoTone } from '@material-ui/icons';
+
 function TaskListView(props) {
     const { tasks } = props
     const [editableTaskId, setEditableTaskId] = React.useState(null)
+    const [selected, setSelected] = React.useState([]);
 
     async function deleteTask(taskId) {
         const decision = window.confirm('Are you sure you want to delete this task?')
@@ -28,36 +40,75 @@ function TaskListView(props) {
         // TODO: Need to update cache here
     }
     
+    const numSelected = selected.length
+    const rowCount = tasks.length
+
+    function onSelectAllClick(event) {
+        if (event.target.checked) {
+            const newSelecteds = tasks.map(task => task.id);
+            setSelected(newSelecteds);
+            return;
+        }
+        setSelected([]);
+    }
+
+    function onSelectClick(event, taskId) {
+        const newSelected = selected.slice(0)
+        if (event.target.checked) {
+            newSelected.push(taskId)
+            setSelected(newSelected)
+            return
+        }
+        const taskIndex = newSelected.findIndex(s => s === taskId)
+        newSelected.splice(taskIndex, 1)
+        setSelected(newSelected)
+        return
+    }
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                    <th colSpan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    tasks.map(task => {
+        
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            <Checkbox
+                                indeterminate={numSelected > 0 && numSelected < rowCount}
+                                checked={numSelected === rowCount}
+                                onChange={onSelectAllClick}
+                                inputProps={{ 'aria-label': 'select all desserts' }}
+                            />
+                        </TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell align="right">Points</TableCell>
+                        <TableCell>Actions</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {tasks.map(task => {
                         const contentIsEditable = editableTaskId === task.id
                         return (
-                            <tr key={task.id}>
-                                <td contentEditable={contentIsEditable}>{task.title}</td>
-                                <td contentEditable={contentIsEditable}>{task.value}</td>
-                                <td onClick={() => deleteTask(task.id)}>delete</td>
-                                {
-                                    contentIsEditable 
-                                    ? <td onClick={() => setEditableTaskId(null)}>save</td>
-                                    : <td onClick={() => setEditableTaskId(task.id)}>edit</td>
-                                }
-                            </tr>
+                            <TableRow key={task.id}>
+                                <TableCell>
+                                    <Checkbox
+                                        onClick={event => onSelectClick(event, task.id)}
+                                        checked={selected.findIndex(s => s === task.id) > -1}
+                                        inputProps={{ 'aria-labelledby': 'task-title' }}
+                                    />
+                                </TableCell>
+                                <TableCell contentEditable={contentIsEditable} id="task-title">{task.title}</TableCell>
+                                <TableCell contentEditable={contentIsEditable} align="right">{task.value}</TableCell>
+                                <TableCell>
+                                    {contentIsEditable 
+                                        ? <SaveTwoTone onClick={() => setEditableTaskId(null)} />
+                                        : <EditTwoTone onClick={() => setEditableTaskId(task.id)} />
+                                    }
+                                    <DeleteTwoTone onClick={() => deleteTask(task.id)} />
+                                </TableCell>
+                            </TableRow>
                         )
-                    })
-                }
-            </tbody>
-        </table>
+                    })}
+                </TableBody>
+            </Table>
     )
 }
 
