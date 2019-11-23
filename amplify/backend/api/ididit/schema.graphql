@@ -1,7 +1,6 @@
 type Goal @model {
   id: ID!
   name: String!
-  tasks: [Task]
   objective: Int!
 }
 
@@ -9,4 +8,11 @@ type Task @model {
   id: ID!
   title: String!
   value: Int!
+}
+
+type Claim @model {
+  id: ID!
+  task: Task
+  goal: Goal
+  claimedAt: AWSDateTime
 }
